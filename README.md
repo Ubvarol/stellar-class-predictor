@@ -1,19 +1,19 @@
-# 🩺 Student Health Risk Predictor
+# 🌌 Stellar Class Predictor
 
-Interactive Streamlit app that classifies a student's health condition
-(**at-risk / unhealthy / fit**) from lifestyle and vitals — built for the
-**Kaggle Playground Series 2026** competition (metric: balanced accuracy).
+Interactive Streamlit app that classifies an astronomical object as **GALAXY**,
+**QSO** (quasar) or **STAR** from SDSS photometry and redshift — built for the
+**Kaggle Playground Series 2026 (S6E6)** competition (metric: balanced accuracy).
 
-- **Model:** multiclass LightGBM with **balanced class weights**
-- **Validation:** 5-fold CV, balanced accuracy ≈ 0.95
+- **Model:** multiclass LightGBM with balanced class weights
+- **Competition result:** a 4-model stack reached **0.9661** OOF balanced accuracy
 - **Live app:** deployed on Streamlit Community Cloud
 
 ## Features
 
-- **Predict** — set a student's profile (sleep, BMI, activity, habits…) and get
-  the predicted health class with per-class probabilities.
-- **How the model was built** — the imbalance challenge, why balanced class
-  weights matter for balanced accuracy, and feature importance.
+- **Predict** — set redshift, the five photometric magnitudes and object type;
+  get the predicted class with per-class probabilities.
+- **How the model was built** — the approach, why redshift is the key separator,
+  and feature importance.
 
 ## Run locally
 
@@ -26,13 +26,14 @@ streamlit run app.py
 
 ```
 streamlit_app/
-├── app.py                    # the Streamlit app
+├── app.py                     # the Streamlit app
 ├── requirements.txt
 └── model/
-    ├── health_lgbm.joblib    # trained multiclass LightGBM
-    └── health_meta.joblib    # feature metadata, ranges, importances
+    ├── stellar_lgbm.joblib    # trained multiclass LightGBM
+    └── stellar_meta.joblib    # feature metadata, ranges, importances
 ```
 
-Trained in the accompanying notebook (`student_health_prediction.ipynb`), which
-covers EDA, the class-imbalance strategy, 5-fold CV and an honest test of the
-prior-adjustment decision rule.
+Trained in the accompanying notebook (`stellar_class_prediction.ipynb`), which
+follows a 16-section template: EDA, feature engineering, cross-validation,
+Optuna tuning, a 4-model stack with threshold calibration, and an experiment
+tracker.
